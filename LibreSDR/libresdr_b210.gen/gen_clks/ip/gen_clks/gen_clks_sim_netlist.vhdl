@@ -2,10 +2,10 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
--- Date        : Wed Apr 22 07:10:05 2026
+-- Date        : Wed Apr 22 07:10:04 2026
 -- Host        : AK1 running 64-bit Ubuntu 24.04.4 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home/alex/Documents/PlatformIO/Projects/LibreSDRB210/LibreSDR/libresdr_b210.gen/gen_clks/ip/gen_clks/gen_clks_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top gen_clks -prefix
+--               gen_clks_ gen_clks_sim_netlist.vhdl
 -- Design      : gen_clks
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -15,7 +15,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity gen_clks_clk_wiz is
+entity gen_clks_gen_clks_clk_wiz is
   port (
     clk_out1_40_int : out STD_LOGIC;
     clk_out2_100_bus : out STD_LOGIC;
@@ -24,9 +24,9 @@ entity gen_clks_clk_wiz is
     locked : out STD_LOGIC;
     clk_in1_40 : in STD_LOGIC
   );
-end gen_clks_clk_wiz;
+end gen_clks_gen_clks_clk_wiz;
 
-architecture STRUCTURE of gen_clks_clk_wiz is
+architecture STRUCTURE of gen_clks_gen_clks_clk_wiz is
   signal clk_in1_40_gen_clks : STD_LOGIC;
   signal clk_out1_40_int_gen_clks : STD_LOGIC;
   signal clk_out2_100_bus_gen_clks : STD_LOGIC;
@@ -195,7 +195,7 @@ end gen_clks;
 
 architecture STRUCTURE of gen_clks is
 begin
-inst: entity work.gen_clks_clk_wiz
+inst: entity work.gen_clks_gen_clks_clk_wiz
      port map (
       clk_in1_40 => clk_in1_40,
       clk_out1_40_int => clk_out1_40_int,

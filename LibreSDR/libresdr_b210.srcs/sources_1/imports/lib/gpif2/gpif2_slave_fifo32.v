@@ -104,6 +104,10 @@ module gpif2_slave_fifo32
     // General purpose pseudo-state counter.
     reg [2:0] idle_cycles;
 
+    // Tunable latency/throughput tradeoff values.
+    localparam [2:0] WAIT_READY_CYCLES = 3'b101; // 6 cycles instead of 8
+    localparam [2:0] WRITE_FLUSH_CYCLES = 3'b110; // 7 cycles instead of 8
+
     // Select next address (endpoint) to be processed
     reg [1:0] last_addr, next_addr;
 
@@ -198,7 +202,7 @@ module gpif2_slave_fifo32
        // Current thread can proceed locally
           if (local_fifo_ready) begin
             idle_cycles <= idle_cycles + 1'b1;
-          if (idle_cycles == 3'b111) state <= STATE_THINK; // Could shorten this delay, flags now stable for several clocks.
+          if (idle_cycles == WAIT_READY_CYCLES) state <= STATE_THINK;
           end
        // ....move onto next thread.
           else begin
@@ -380,7 +384,7 @@ module gpif2_slave_fifo32
         pktend <= 1;
         gpif_data_out <= 32'b0;
         idle_cycles <= idle_cycles + 1'b1;
-        if (idle_cycles == 3'b111) begin
+        if (idle_cycles == WRITE_FLUSH_CYCLES) begin
           state <= STATE_IDLE;
         end
       end
@@ -411,8 +415,14 @@ module gpif2_slave_fifo32
  -----/\----- EXCLUDED -----/\----- */
    //always @(posedge gpif_clk) next_addr <= (fifoadr + 2'b1);
 
-   // Sequence addresses 0->2->1->3->0......
-   always @(posedge gpif_clk) {next_addr[0],next_addr[1]} <= ({fifoadr[0],fifoadr[1]} + 2'b1);
+     // Fairness-aware scheduling: prioritize ready endpoints, otherwise rotate.
+     always @(posedge gpif_clk) next_addr <=
+       ((ctrl_rx_tvalid && (last_addr != ADDR_CTRL_RX)) ? ADDR_CTRL_RX :
+       ((ctrl_tx_fifo_has_space && (last_addr != ADDR_CTRL_TX)) ? ADDR_CTRL_TX :
+       ((data_rx_tvalid && (last_addr != ADDR_DATA_RX)) ? ADDR_DATA_RX :
+       ((data_tx_fifo_has_space && (last_addr != ADDR_DATA_TX)) ? ADDR_DATA_TX :
+       (fifoadr + 2'b1)
+     ))));
 
     //Help the FPGA search to only look for addrs that the FPGA is ready for
     assign local_fifo_ready =
