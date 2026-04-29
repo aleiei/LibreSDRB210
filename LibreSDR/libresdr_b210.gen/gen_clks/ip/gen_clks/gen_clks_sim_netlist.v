@@ -2,10 +2,10 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
-// Date        : Wed Apr 22 07:10:05 2026
+// Date        : Wed Apr 22 07:10:04 2026
 // Host        : AK1 running 64-bit Ubuntu 24.04.4 LTS
-// Command     : write_verilog -force -mode funcsim
-//               /home/alex/Documents/PlatformIO/Projects/LibreSDRB210/LibreSDR/libresdr_b210.gen/gen_clks/ip/gen_clks/gen_clks_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top gen_clks -prefix
+//               gen_clks_ gen_clks_sim_netlist.v
 // Design      : gen_clks
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -35,7 +35,7 @@ module gen_clks
   wire locked;
   wire reset;
 
-  gen_clks_clk_wiz inst
+  gen_clks_gen_clks_clk_wiz inst
        (.clk_in1_40(clk_in1_40),
         .clk_out1_40_int(clk_out1_40_int),
         .clk_out2_100_bus(clk_out2_100_bus),
@@ -44,7 +44,7 @@ module gen_clks
         .reset(reset));
 endmodule
 
-module gen_clks_clk_wiz
+module gen_clks_gen_clks_clk_wiz
    (clk_out1_40_int,
     clk_out2_100_bus,
     clk_out3_200_ref_pll,

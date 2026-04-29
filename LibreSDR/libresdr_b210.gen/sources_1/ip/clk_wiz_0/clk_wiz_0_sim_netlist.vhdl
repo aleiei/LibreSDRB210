@@ -4,8 +4,8 @@
 -- Tool Version: Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
 -- Date        : Wed Apr 22 07:10:56 2026
 -- Host        : AK1 running 64-bit Ubuntu 24.04.4 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home/alex/Documents/PlatformIO/Projects/LibreSDRB210/LibreSDR/libresdr_b210.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top clk_wiz_0 -prefix
+--               clk_wiz_0_ clk_wiz_0_sim_netlist.vhdl
 -- Design      : clk_wiz_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -15,15 +15,15 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity clk_wiz_0_clk_wiz is
+entity clk_wiz_0_clk_wiz_0_clk_wiz is
   port (
     clk_out_200M : out STD_LOGIC;
     locked : out STD_LOGIC;
     clk_in1_10M : in STD_LOGIC
   );
-end clk_wiz_0_clk_wiz;
+end clk_wiz_0_clk_wiz_0_clk_wiz;
 
-architecture STRUCTURE of clk_wiz_0_clk_wiz is
+architecture STRUCTURE of clk_wiz_0_clk_wiz_0_clk_wiz is
   signal clk_in1_10M_clk_wiz_0 : STD_LOGIC;
   signal clk_out_200M_clk_wiz_0 : STD_LOGIC;
   signal clkfbout_clk_wiz_0 : STD_LOGIC;
@@ -161,7 +161,7 @@ end clk_wiz_0;
 
 architecture STRUCTURE of clk_wiz_0 is
 begin
-inst: entity work.clk_wiz_0_clk_wiz
+inst: entity work.clk_wiz_0_clk_wiz_0_clk_wiz
      port map (
       clk_in1_10M => clk_in1_10M,
       clk_out_200M => clk_out_200M,

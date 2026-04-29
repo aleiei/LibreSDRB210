@@ -4,8 +4,8 @@
 -- Tool Version: Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
 -- Date        : Wed Apr 22 07:08:13 2026
 -- Host        : AK1 running 64-bit Ubuntu 24.04.4 LTS
--- Command     : write_vhdl -force -mode synth_stub
---               /home/alex/Documents/PlatformIO/Projects/LibreSDRB210/LibreSDR/libresdr_b210.gen/fifo_4k_2clk/ip/fifo_4k_2clk/fifo_4k_2clk_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top fifo_4k_2clk -prefix
+--               fifo_4k_2clk_ fifo_4k_2clk_stub.vhdl
 -- Design      : fifo_4k_2clk
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7a100tfgg484-2

@@ -2,10 +2,10 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
-// Date        : Wed Apr 22 07:10:56 2026
+// Date        : Wed Apr 22 07:10:55 2026
 // Host        : AK1 running 64-bit Ubuntu 24.04.4 LTS
-// Command     : write_verilog -force -mode synth_stub
-//               /home/alex/Documents/PlatformIO/Projects/LibreSDRB210/LibreSDR/libresdr_b210.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top clk_wiz_0 -prefix
+//               clk_wiz_0_ clk_wiz_0_stub.v
 // Design      : clk_wiz_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tfgg484-2
