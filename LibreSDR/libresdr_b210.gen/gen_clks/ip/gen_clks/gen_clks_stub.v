@@ -2,10 +2,10 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
-// Date        : Wed Apr 22 07:10:04 2026
+// Date        : Wed Apr 22 07:10:05 2026
 // Host        : AK1 running 64-bit Ubuntu 24.04.4 LTS
-// Command     : write_verilog -force -mode synth_stub -rename_top gen_clks -prefix
-//               gen_clks_ gen_clks_stub.v
+// Command     : write_verilog -force -mode synth_stub
+//               /home/alex/Documents/PlatformIO/Projects/LibreSDRB210/LibreSDR/libresdr_b210.gen/gen_clks/ip/gen_clks/gen_clks_stub.v
 // Design      : gen_clks
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tfgg484-2
