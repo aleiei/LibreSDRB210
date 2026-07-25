@@ -4,6 +4,22 @@
 
 This repository contains essential files and instructions for setting up the USRP B210 with custom firmware on Linux. Follow the steps below to install the required drivers and replace the default B210 image with the custom one from this repository.
 
+## Project Internal Visual Pipeline
+
+The following diagrams describe the internal architecture pipeline of the project (signal/data/control/timing paths), not the build workflow.
+
+### 1) Architecture Overview
+
+![Project Architecture Overview](diagrams/project_pipeline_overview.svg)
+
+### 2) Data Pipeline (RX and TX)
+
+![Project Data RX-TX Pipeline](diagrams/project_pipeline_data_rx_tx.svg)
+
+### 3) Control and Timing Pipeline
+
+![Project Control and Timing Pipeline](diagrams/project_pipeline_control_timing.svg)
+
 ## Prerequisites
 
 - Ubuntu Linux or another Debian-based distribution

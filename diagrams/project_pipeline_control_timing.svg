@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="920" viewBox="0 0 1500 920">
+  <defs>
+    <style>
+      .title { font: 700 30px Arial, sans-serif; fill: #0f172a; }
+      .box { fill: #fef3c7; stroke: #b45309; stroke-width: 2; rx: 10; }
+      .clk { fill: #dcfce7; stroke: #166534; stroke-width: 2; rx: 10; }
+      .io { fill: #dbeafe; stroke: #1d4ed8; stroke-width: 2; rx: 10; }
+      .lab { font: 15px Arial, sans-serif; fill: #0f172a; }
+      .sub { font: 12px Arial, sans-serif; fill: #334155; }
+      .ctrlLine { stroke: #b45309; stroke-width: 2; fill: none; marker-end: url(#aCtrl); }
+      .clkLine { stroke: #166534; stroke-width: 2; fill: none; marker-end: url(#aClk); }
+      .ioLine { stroke: #1d4ed8; stroke-width: 2; fill: none; marker-end: url(#aIo); }
+    </style>
+    <marker id="aCtrl" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#b45309"/>
+    </marker>
+    <marker id="aClk" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#166534"/>
+    </marker>
+    <marker id="aIo" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1d4ed8"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="50" class="title">LibreSDRB210 - Control and Timing Pipeline</text>
+
+  <rect x="60" y="110" width="260" height="80" class="io"/>
+  <text x="85" y="145" class="lab">Host control packets</text>
+  <text x="85" y="168" class="sub">CHDR EC over USB3</text>
+
+  <rect x="370" y="110" width="280" height="80" class="io"/>
+  <text x="395" y="145" class="lab">gpif2_slave_fifo32</text>
+  <text x="395" y="168" class="sub">CTRL endpoint path</text>
+
+  <rect x="700" y="110" width="280" height="80" class="box"/>
+  <text x="725" y="145" class="lab">b200_core ctrl demux/mux</text>
+  <text x="725" y="168" class="sub">R0/R1/U0/L0 routing</text>
+
+  <rect x="1030" y="110" width="330" height="80" class="box"/>
+  <text x="1055" y="145" class="lab">radio_ctrl_proc + setting_reg</text>
+  <text x="1055" y="168" class="sub">timed writes to setting bus</text>
+
+  <rect x="1030" y="240" width="330" height="80" class="box"/>
+  <text x="1055" y="275" class="lab">Config targets</text>
+  <text x="1055" y="298" class="sub">DDC/DUC, gains, rates, GPIO ATR, stream SID</text>
+
+  <rect x="700" y="240" width="280" height="80" class="box"/>
+  <text x="725" y="275" class="lab">Response path</text>
+  <text x="725" y="298" class="sub">readback, tx_responder, status</text>
+
+  <rect x="370" y="240" width="280" height="80" class="io"/>
+  <text x="395" y="275" class="lab">GPIF CTRL back to host</text>
+  <text x="395" y="298" class="sub">ack, error, readback</text>
+
+  <rect x="60" y="240" width="260" height="80" class="io"/>
+  <text x="85" y="275" class="lab">Host receives status</text>
+  <text x="85" y="298" class="sub">UHD register transactions</text>
+
+  <rect x="60" y="420" width="260" height="90" class="clk"/>
+  <text x="85" y="456" class="lab">Reference inputs</text>
+  <text x="85" y="478" class="sub">CLK_40MHz_FPGA, CLKIN_10MHz, PPS_IN_EXT</text>
+
+  <rect x="370" y="420" width="280" height="90" class="clk"/>
+  <text x="395" y="456" class="lab">gen_clks + reset_sync</text>
+  <text x="395" y="478" class="sub">bus_clk, gpif_clk, radio_clk, ref_pll_clk</text>
+
+  <rect x="700" y="420" width="280" height="90" class="clk"/>
+  <text x="725" y="456" class="lab">b205_ref_pll / ppsloop</text>
+  <text x="725" y="478" class="sub">PPS detect, lock, control loop</text>
+
+  <rect x="1030" y="420" width="330" height="90" class="clk"/>
+  <text x="1055" y="456" class="lab">DACx311_auto_spi</text>
+  <text x="1055" y="478" class="sub">tunes VCTCXO discipline DAC</text>
+
+  <rect x="1030" y="560" width="330" height="90" class="clk"/>
+  <text x="1055" y="596" class="lab">Timebase and sync outputs</text>
+  <text x="1055" y="618" class="sub">REF_LOCKED, PPS_LED, pps_select, vita_time sync</text>
+
+  <path d="M320 150 L370 150" class="ioLine"/>
+  <path d="M650 150 L700 150" class="ioLine"/>
+  <path d="M980 150 L1030 150" class="ctrlLine"/>
+  <path d="M1030 280 L980 280" class="ctrlLine"/>
+  <path d="M700 280 L650 280" class="ctrlLine"/>
+  <path d="M370 280 L320 280" class="ioLine"/>
+
+  <path d="M190 510 L190 560 L1030 560" class="clkLine"/>
+  <path d="M320 465 L370 465" class="clkLine"/>
+  <path d="M650 465 L700 465" class="clkLine"/>
+  <path d="M980 465 L1030 465" class="clkLine"/>
+  <path d="M1195 510 L1195 560" class="clkLine"/>
+
+  <text x="40" y="760" class="sub">Control modules reference: b200_core.v, radio_ctrl_proc.v, tx_responder.v, setting_reg, gpio_atr_io.v</text>
+  <text x="40" y="782" class="sub">Timing modules reference: libresdr_b210.v, gen_clks, b205_ref_pll.v, ppsloop.v, DACx311_auto_spi.v</text>
+</svg>

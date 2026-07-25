@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900">
+  <defs>
+    <style>
+      .title { font: 700 30px Arial, sans-serif; fill: #0f172a; }
+      .box { fill: #e2e8f0; stroke: #334155; stroke-width: 2; rx: 10; }
+      .io { fill: #dbeafe; stroke: #1d4ed8; stroke-width: 2; rx: 10; }
+      .ctrl { fill: #fef3c7; stroke: #b45309; stroke-width: 2; rx: 10; }
+      .clk { fill: #dcfce7; stroke: #166534; stroke-width: 2; rx: 10; }
+      .lab { font: 15px Arial, sans-serif; fill: #0f172a; }
+      .sub { font: 12px Arial, sans-serif; fill: #334155; }
+      .line { stroke: #0f172a; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .line2 { stroke: #1d4ed8; stroke-width: 2; fill: none; marker-end: url(#arrowBlue); }
+      .line3 { stroke: #b45309; stroke-width: 2; fill: none; marker-end: url(#arrowGold); }
+      .line4 { stroke: #166534; stroke-width: 2; fill: none; marker-end: url(#arrowGreen); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#0f172a"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="arrowGold" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#b45309"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#166534"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="50" class="title">LibreSDRB210 - Project Internal Pipeline (Architecture Overview)</text>
+
+  <rect x="60" y="120" width="260" height="90" class="io"/>
+  <text x="85" y="155" class="lab">Host SDR software</text>
+  <text x="85" y="178" class="sub">UHD / CHDR streams</text>
+
+  <rect x="380" y="120" width="300" height="90" class="io"/>
+  <text x="405" y="155" class="lab">FX3 GPIF2 interface</text>
+  <text x="405" y="178" class="sub">gpif2_slave_fifo32 + fifo32/64 bridges</text>
+
+  <rect x="740" y="120" width="320" height="90" class="box"/>
+  <text x="765" y="155" class="lab">b200_core</text>
+  <text x="765" y="178" class="sub">AXI mux/demux, control routing, responses</text>
+
+  <rect x="1120" y="120" width="300" height="90" class="box"/>
+  <text x="1145" y="155" class="lab">radio_legacy x2</text>
+  <text x="1145" y="178" class="sub">DDC/DUC + VITA framing/deframing</text>
+
+  <rect x="1120" y="300" width="300" height="90" class="io"/>
+  <text x="1145" y="335" class="lab">e310_io</text>
+  <text x="1145" y="358" class="sub">DDR interface with AD9361 (I/Q, frame, clk)</text>
+
+  <rect x="1120" y="480" width="300" height="90" class="io"/>
+  <text x="1145" y="515" class="lab">AD9361 RF transceiver</text>
+  <text x="1145" y="538" class="sub">RF ADC/DAC + SPI control</text>
+
+  <rect x="740" y="300" width="320" height="90" class="ctrl"/>
+  <text x="765" y="335" class="lab">Control plane</text>
+  <text x="765" y="358" class="sub">radio_ctrl_proc, setting_reg, SPI/UART/GPIO</text>
+
+  <rect x="380" y="300" width="300" height="90" class="clk"/>
+  <text x="405" y="335" class="lab">Clock / timing plane</text>
+  <text x="405" y="358" class="sub">gen_clks, reset_sync, PPS/ref selection</text>
+
+  <rect x="60" y="300" width="260" height="90" class="clk"/>
+  <text x="85" y="335" class="lab">Discipline loop</text>
+  <text x="85" y="358" class="sub">b205_ref_pll / ppsloop + DACx311 SPI</text>
+
+  <rect x="60" y="480" width="260" height="90" class="io"/>
+  <text x="85" y="515" class="lab">Reference inputs</text>
+  <text x="85" y="538" class="sub">10 MHz, PPS ext, 40 MHz clock</text>
+
+  <path d="M320 165 L380 165" class="line2"/>
+  <path d="M680 165 L740 165" class="line2"/>
+  <path d="M1060 165 L1120 165" class="line2"/>
+
+  <path d="M1270 210 L1270 300" class="line"/>
+  <path d="M1270 390 L1270 480" class="line"/>
+
+  <path d="M1060 345 L1120 345" class="line3"/>
+  <path d="M740 345 L680 345" class="line3"/>
+
+  <path d="M380 345 L320 345" class="line4"/>
+  <path d="M190 390 L190 480" class="line4"/>
+  <path d="M320 525 L1120 525" class="line4"/>
+
+  <text x="560" y="108" class="sub">Data plane (RX/TX CHDR)</text>
+  <text x="860" y="285" class="sub">Control plane</text>
+  <text x="575" y="430" class="sub">Timing and reference distribution</text>
+</svg>

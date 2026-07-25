@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="980" viewBox="0 0 1500 980">
+  <defs>
+    <style>
+      .title { font: 700 30px Arial, sans-serif; fill: #0f172a; }
+      .hdr { font: 700 18px Arial, sans-serif; fill: #0f172a; }
+      .lab { font: 14px Arial, sans-serif; fill: #0f172a; }
+      .sub { font: 12px Arial, sans-serif; fill: #334155; }
+      .rx { fill: #dbeafe; stroke: #1d4ed8; stroke-width: 2; rx: 10; }
+      .tx { fill: #fee2e2; stroke: #b91c1c; stroke-width: 2; rx: 10; }
+      .lineRx { stroke: #1d4ed8; stroke-width: 2; fill: none; marker-end: url(#aRx); }
+      .lineTx { stroke: #b91c1c; stroke-width: 2; fill: none; marker-end: url(#aTx); }
+    </style>
+    <marker id="aRx" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="aTx" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#b91c1c"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="50" class="title">LibreSDRB210 - Data Pipeline (RX and TX inside FPGA)</text>
+
+  <text x="40" y="110" class="hdr">RX path (RF to Host)</text>
+  <rect x="40" y="130" width="190" height="70" class="rx"/>
+  <text x="55" y="160" class="lab">AD9361 RX</text>
+  <text x="55" y="182" class="sub">CAT_P0_D + CAT_RX_FR_P + DCLK</text>
+
+  <rect x="260" y="130" width="210" height="70" class="rx"/>
+  <text x="275" y="160" class="lab">e310_io</text>
+  <text x="275" y="182" class="sub">IDDR, lane/strobe decode</text>
+
+  <rect x="500" y="130" width="260" height="70" class="rx"/>
+  <text x="515" y="160" class="lab">radio_legacy (RX)</text>
+  <text x="515" y="182" class="sub">ddc_chain + formatting</text>
+
+  <rect x="790" y="130" width="240" height="70" class="rx"/>
+  <text x="805" y="160" class="lab">new_rx_framer</text>
+  <text x="805" y="182" class="sub">samples to CHDR packets</text>
+
+  <rect x="1060" y="130" width="210" height="70" class="rx"/>
+  <text x="1075" y="160" class="lab">source_flow_control</text>
+  <text x="1075" y="182" class="sub">credit/window control</text>
+
+  <rect x="1300" y="130" width="170" height="70" class="rx"/>
+  <text x="1315" y="160" class="lab">b200_core</text>
+  <text x="1315" y="182" class="sub">RX mux out</text>
+
+  <rect x="1140" y="240" width="180" height="70" class="rx"/>
+  <text x="1155" y="270" class="lab">fifo64_to_gpif2</text>
+  <text x="1155" y="292" class="sub">64 to 32 + CDC</text>
+
+  <rect x="920" y="240" width="190" height="70" class="rx"/>
+  <text x="935" y="270" class="lab">gpif2_slave_fifo32</text>
+  <text x="935" y="292" class="sub">FX3 endpoint engine</text>
+
+  <rect x="700" y="240" width="190" height="70" class="rx"/>
+  <text x="715" y="270" class="lab">FX3 USB3</text>
+  <text x="715" y="292" class="sub">stream to host UHD</text>
+
+  <path d="M230 165 L260 165" class="lineRx"/>
+  <path d="M470 165 L500 165" class="lineRx"/>
+  <path d="M760 165 L790 165" class="lineRx"/>
+  <path d="M1030 165 L1060 165" class="lineRx"/>
+  <path d="M1270 165 L1300 165" class="lineRx"/>
+  <path d="M1385 200 L1385 240 L1320 240" class="lineRx"/>
+  <path d="M1140 275 L1110 275" class="lineRx"/>
+  <path d="M920 275 L890 275" class="lineRx"/>
+
+  <text x="40" y="420" class="hdr">TX path (Host to RF)</text>
+  <rect x="40" y="440" width="190" height="70" class="tx"/>
+  <text x="55" y="470" class="lab">Host UHD</text>
+  <text x="55" y="492" class="sub">CHDR TX packets</text>
+
+  <rect x="260" y="440" width="190" height="70" class="tx"/>
+  <text x="275" y="470" class="lab">FX3 USB3</text>
+  <text x="275" y="492" class="sub">to GPIF2 endpoint</text>
+
+  <rect x="480" y="440" width="190" height="70" class="tx"/>
+  <text x="495" y="470" class="lab">gpif2_slave_fifo32</text>
+  <text x="495" y="492" class="sub">32-bit GPIF ingest</text>
+
+  <rect x="700" y="440" width="180" height="70" class="tx"/>
+  <text x="715" y="470" class="lab">gpif2_to_fifo64</text>
+  <text x="715" y="492" class="sub">32 to 64 + CDC</text>
+
+  <rect x="910" y="440" width="170" height="70" class="tx"/>
+  <text x="925" y="470" class="lab">b200_core</text>
+  <text x="925" y="492" class="sub">TX route</text>
+
+  <rect x="1110" y="440" width="240" height="70" class="tx"/>
+  <text x="1125" y="470" class="lab">new_tx_deframer + radio_legacy</text>
+  <text x="1125" y="492" class="sub">CHDR decode + DUC/interp</text>
+
+  <rect x="1110" y="550" width="240" height="70" class="tx"/>
+  <text x="1125" y="580" class="lab">e310_io</text>
+  <text x="1125" y="602" class="sub">ODDR TX framing/clocking</text>
+
+  <rect x="1110" y="660" width="240" height="70" class="tx"/>
+  <text x="1125" y="690" class="lab">AD9361 TX</text>
+  <text x="1125" y="712" class="sub">CAT_P1_D + CAT_TX_FR_P + FBCLK</text>
+
+  <path d="M230 475 L260 475" class="lineTx"/>
+  <path d="M450 475 L480 475" class="lineTx"/>
+  <path d="M670 475 L700 475" class="lineTx"/>
+  <path d="M880 475 L910 475" class="lineTx"/>
+  <path d="M1080 475 L1110 475" class="lineTx"/>
+  <path d="M1230 510 L1230 550" class="lineTx"/>
+  <path d="M1230 620 L1230 660" class="lineTx"/>
+
+  <text x="40" y="820" class="sub">Main HDL references: libresdr_b210.v, b200_core.v, radio_legacy.v, e310_io.v, gpif2_*.v, new_rx_framer.v, new_tx_deframer.v</text>
+</svg>
